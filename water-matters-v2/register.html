@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign up - Water Matters</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,600..900&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="register">
+
+  <nav id="nav"></nav>
+  <div id="messages" class="wrap"></div>
+
+  <main class="wrap narrow">
+    <h1 class="page-title">Create an account</h1>
+    <p class="small-text">Demo version: accounts are saved only in this browser.</p>
+
+    <form id="register-form" class="panel">
+      <label for="name">Full name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="phone">Phone number</label>
+      <input type="tel" id="phone" name="phone" required>
+
+      <fieldset>
+        <legend>Account type</legend>
+        <p class="small-text">Choose carefully. You cannot change this after you sign up.</p>
+
+        <label class="role">
+          <input type="radio" name="role" value="client" required>
+          <span><strong>Client</strong><br>I need water delivered.</span>
+        </label>
+
+        <label class="role">
+          <input type="radio" name="role" value="provider">
+          <span><strong>Water provider (admin)</strong><br>I supply water and set my own price per litre.</span>
+        </label>
+      </fieldset>
+
+      <!-- Shown only when "Water provider" is chosen -->
+      <div id="code-box" class="hidden">
+        <label for="code">Provider code</label>
+        <input type="text" id="code" name="code">
+      </div>
+
+      <label for="password">Password (at least 6 characters)</label>
+      <input type="password" id="password" name="password" required>
+
+      <label for="confirm">Confirm password</label>
+      <input type="password" id="confirm" name="confirm" required>
+
+      <button type="submit">Sign up</button>
+    </form>
+
+    <p>Already have an account? <a href="login.html">Log in</a></p>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>Made by Emmanuel Juma Odero, Tharaka University.</p>
+      <p class="sources">Sources: Tharaka University thesis on water scarcity in Tharaka-Nithi County (2025);
+         Chuka University studies on borehole water quality; Thomson Reuters Foundation report on water conflicts (2019);
+         Nation Africa and The Star reports on water prices in Kenyan towns; Tharaka-Nithi County government
+         note on its smart water kiosks.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,388 @@
+/* =========================================================
+   WATER MATTERS - STYLES
+   Look: a painted kiosk signboard. Flat colour, strong lettering,
+   prices shown like a price board. No shadows, no gradients.
+   ========================================================= */
+
+/* ---------- COLORS AND FONTS (change these to restyle the site) ---------- */
+:root {
+  --ink: #0f2430;          /* text */
+  --board: #0a5a8c;        /* signboard blue */
+  --deep: #06324f;         /* dark water blue */
+  --yellow: #f4b400;       /* jerrycan yellow */
+  --concrete: #e3eaed;     /* page background, like wet concrete */
+  --paper: #ffffff;
+  --line: #b7c6cd;
+  --green: #2f7d4f;
+  --red: #b3372f;
+
+  --display: "Archivo", "Arial Narrow", Arial, sans-serif;
+  --body: "Atkinson Hyperlegible", "Segoe UI", Arial, sans-serif;
+}
+
+/* ---------- BASIC SETUP ---------- */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--ink);
+  background-color: var(--concrete);
+}
+
+a { color: var(--board); }
+
+.hidden { display: none; }
+
+/* Keeps content a readable width and centered */
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* ---------- HEADINGS ---------- */
+h1, h2, h3, .brand {
+  font-family: var(--display);
+  font-stretch: 80%;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(2.4rem, 6vw, 4rem); margin: 0 0 16px 0; }
+h2 { font-size: 1.9rem; margin: 0 0 14px 0; }
+
+.page-title { margin-top: 32px; font-size: 2.4rem; }
+
+p { max-width: 62ch; }
+
+/* ---------- KEYBOARD FOCUS ---------- */
+a:focus-visible, button:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--board);
+  outline-offset: 2px;
+}
+.hero a:focus-visible, nav a:focus-visible, footer a:focus-visible {
+  outline-color: var(--yellow);
+}
+
+/* ---------- NAVIGATION BAR ---------- */
+nav { background-color: var(--deep); }
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+nav .brand {
+  color: var(--yellow);
+  font-size: 1.7rem;
+  text-decoration: none;
+}
+
+nav .links a {
+  color: var(--paper);
+  margin-left: 22px;
+  text-decoration: none;
+  font-weight: 700;
+}
+nav .links a:hover { text-decoration: underline; }
+
+/* ---------- MESSAGES ---------- */
+.flash {
+  margin-top: 16px;
+  padding: 12px 16px;
+  border-left: 6px solid;
+  background-color: var(--paper);
+}
+.flash.success { border-color: var(--green); }
+.flash.error   { border-color: var(--red); }
+
+/* ---------- HERO (top of home page, with the picture slot) ---------- */
+.hero {
+  background-color: var(--board);
+  color: var(--paper);
+  padding: 48px 0 56px 0;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.hero-text p { font-size: 1.2rem; }
+
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+
+/* The picture slot: a framed sign. The image fills it, whatever its shape. */
+.hero-picture {
+  margin: 0;
+  border: 8px solid var(--yellow);
+  background-color: var(--deep);
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+.hero-picture img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- SECTIONS ---------- */
+main { padding-bottom: 20px; }
+section.wrap { margin-top: 56px; }
+
+/* Heading on the left, content on the right */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 32px;
+}
+
+/* ---------- PRICE BOARD ---------- */
+.board {
+  background-color: var(--board);
+  color: var(--paper);
+  padding: 24px;
+  outline: 3px solid var(--yellow);
+  outline-offset: -12px;
+  border: 12px solid var(--board);   /* keeps text clear of the yellow line */
+}
+.board h2 { color: var(--paper); }
+.board p  { margin-top: 0; }
+
+.board-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.board-table th {
+  text-align: left;
+  font-weight: 400;
+  color: #bfe0f2;
+  padding: 6px 8px;
+}
+.board-table td {
+  padding: 10px 8px;
+  border-top: 2px dashed rgba(255, 255, 255, 0.5);
+}
+.board-table .price {
+  font-family: var(--display);
+  font-stretch: 80%;
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--yellow);
+  white-space: nowrap;
+}
+
+/* ---------- STEPS ---------- */
+.steps {
+  list-style: none;
+  counter-reset: step;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.steps li {
+  counter-increment: step;
+  border-top: 5px solid var(--ink);
+  padding-top: 12px;
+}
+.steps li::before {
+  content: counter(step);
+  display: block;
+  font-family: var(--display);
+  font-stretch: 80%;
+  font-weight: 800;
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--board);
+  margin-bottom: 6px;
+}
+
+/* ---------- TEXT LISTS ---------- */
+dl { margin: 0; }
+dt {
+  font-family: var(--display);
+  font-stretch: 80%;
+  font-weight: 800;
+  font-size: 1.3rem;
+  margin-top: 20px;
+}
+dt:first-child { margin-top: 0; }
+dd { margin: 2px 0 0 0; max-width: 62ch; }
+
+ul.plain { margin: 0; padding-left: 1.2rem; max-width: 62ch; }
+ul.plain li { margin-bottom: 10px; }
+
+/* ---------- INVESTOR NOTE ---------- */
+.note-block {
+  background-color: var(--paper);
+  border-left: 10px solid var(--yellow);
+  padding: 24px 28px;
+}
+
+/* ---------- BUTTONS ---------- */
+.button, button {
+  display: inline-block;
+  background-color: var(--yellow);
+  color: var(--deep);
+  border: 2px solid var(--deep);
+  padding: 10px 20px;
+  border-radius: 3px;
+  font-family: var(--body);
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+.button:hover, button:hover { background-color: #ffc933; }
+
+.button.outline {
+  background-color: transparent;
+  color: var(--paper);
+  border-color: var(--paper);
+}
+.button.outline:hover { background-color: rgba(255, 255, 255, 0.15); }
+
+button.small  { padding: 5px 12px; font-size: 0.9rem; }
+button.danger { background-color: var(--paper); color: var(--red); border-color: var(--red); }
+button.danger:hover { background-color: #f8dcd9; }
+
+/* ---------- FORMS ---------- */
+.narrow { max-width: 520px; }
+
+.panel {
+  background-color: var(--paper);
+  border: 2px solid var(--ink);
+  padding: 8px 22px 22px 22px;
+  margin-bottom: 20px;
+}
+
+form label {
+  display: block;
+  margin: 16px 0 4px 0;
+  font-weight: 700;
+}
+
+form input, form select, form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid var(--ink);
+  border-radius: 3px;
+  background-color: var(--paper);
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+form button { margin-top: 20px; }
+.narrow form button { width: 100%; }
+
+fieldset { border: 0; padding: 0; margin: 20px 0 0 0; }
+legend { font-weight: 700; padding: 0; }
+
+/* The two account-type choices */
+label.role {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin: 10px 0 0 0;
+  padding: 12px 14px;
+  border: 2px solid var(--ink);
+  border-radius: 3px;
+  font-weight: 400;
+  cursor: pointer;
+}
+label.role input { width: auto; margin-top: 5px; }
+label.role:has(input:checked) { background-color: #fff3c4; border-color: var(--deep); }
+
+/* ---------- DASHBOARD ---------- */
+.who { margin-top: 0; color: #3d5360; }
+.small-text { font-size: 0.9rem; color: #3d5360; }
+.board .small-text { color: #bfe0f2; }
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.ledger { margin-top: 0; }
+
+/* ---------- TABLES ---------- */
+.table-wrap { overflow-x: auto; }   /* wide tables scroll on phones */
+
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--paper);
+  border: 2px solid var(--ink);
+}
+table.data th {
+  background-color: var(--deep);
+  color: var(--paper);
+  font-family: var(--display);
+  font-stretch: 80%;
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-align: left;
+  padding: 10px 12px;
+}
+table.data td {
+  padding: 10px 12px;
+  border-top: 1px solid var(--line);
+  vertical-align: top;
+}
+
+/* Status labels */
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 3px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--paper);
+}
+.badge.open      { background-color: var(--yellow); color: var(--deep); }
+.badge.accepted  { background-color: var(--board); }
+.badge.delivered { background-color: var(--deep); }
+.badge.paid      { background-color: var(--green); }
+.badge.cancelled { background-color: #66767f; }
+
+/* ---------- FOOTER ---------- */
+footer {
+  background-color: var(--deep);
+  color: var(--paper);
+  margin-top: 64px;
+  padding: 28px 0;
+}
+footer p { margin: 0 0 8px 0; }
+footer .sources { font-size: 0.9rem; color: #bfe0f2; }
+
+/* ---------- PHONE SCREENS ---------- */
+@media (max-width: 760px) {
+  .hero-inner, .split, .two-col { grid-template-columns: 1fr; gap: 24px; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .nav-inner { justify-content: center; }
+  nav .links a:first-child { margin-left: 0; }
+}
+
+@media (max-width: 480px) {
+  .steps { grid-template-columns: 1fr; }
+  .board { padding: 16px; }
+}
